@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TaskBan</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="button_enter">Entrar</string>
+    <string name="error_connection">Ops! Ocoreu um erro na conexão com a internet</string>
+    <string name="error_request">Ops! Ocorreu um erro ao realizar a requisição</string>
+    <string name="label_error_invalid_response">Droga! Resposta inválida</string>
+    <string name="hint_username">Digite seu usuário</string>
+    <string name="hint_password">Digite sua senha</string>
+    <string name="message_wait">Por favor, aguarde!</string>
+</resources>
