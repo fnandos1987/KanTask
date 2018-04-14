@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Session session = new Session(this);
         session.setUserNameInSession(user.getName());
-        session.setPhotoUrlInSession(user.getPhotoUrl());
+        session.setTokenInSession(user.getToken());
 
         goHome();
     }

@@ -3,7 +3,7 @@ package br.edu.unidavi.kantask.model;
 public class Usuario {
 
     private String name;
-    private String photoUrl;
+    private String token;
 
     public String getName() {
         return name;
@@ -13,11 +13,11 @@ public class Usuario {
         this.name = name;
     }
 
-    public String getPhotoUrl() {
-        return photoUrl;
+    public String getToken() {
+        return token;
     }
 
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
+    public void setToken(String token) {
+        this.token = token;
     }
 }

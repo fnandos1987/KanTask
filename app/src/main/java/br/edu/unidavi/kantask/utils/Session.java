@@ -8,7 +8,7 @@ public class Session {
     private final String PREF_NAME = "session";
     private final String DEFAULT = "no data";
     private final String USERNAME = "username";
-    private final String PHOTO_URL = "photoUrl";
+    private final String TOKEN = "token";
 
     Context context;
 
@@ -28,6 +28,11 @@ public class Session {
         return sharedPref.getString(info, DEFAULT);
     }
 
+    public void clearSession(){
+        SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        sharedPref.edit().clear().apply();
+    }
+
     public void setUserNameInSession(String user){
         setInfoStringInSession(USERNAME, user);
     }
@@ -36,11 +41,11 @@ public class Session {
         return getInfoStringInSession(USERNAME);
     }
 
-    public void setPhotoUrlInSession(String photo){
-        setInfoStringInSession(PHOTO_URL, photo);
+    public void setTokenInSession(String photo){
+        setInfoStringInSession(TOKEN, photo);
     }
 
-    public String getPhotoUrlInSession(){
-        return getInfoStringInSession(PHOTO_URL);
+    public String getTokenInSession(){
+        return getInfoStringInSession(TOKEN);
     }
 }
