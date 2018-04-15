@@ -12,9 +12,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        application = (KanTaskApplication) getApplication();
-        application.fazer.clear();
-        application.fazendo.clear();
-        application.feito.clear();
+        TabsAdapter adapter = new AbasAdapter(getSupportFragmentManager());
+        adapter.adicionar( new PrimeiroFragment() , "Primeira Aba");
+        adapter.adicionar( new SegundoFragment(), "Segunda Aba");
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.abas_view_pager);
+        viewPager.setAdapter(adapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.abas);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }
