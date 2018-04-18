@@ -31,7 +31,7 @@ public class WebTaskLogin extends WebTaskBase{
             JSONObject responseAsJSON = new JSONObject(response);
 
             user.setName(responseAsJSON.getString("name"));
-            user.setPhotoUrl(responseAsJSON.getString("profile_url"));
+            user.setToken(responseAsJSON.getString("token"));
 
             EventBus.getDefault().post(user);
         } catch (JSONException e) {

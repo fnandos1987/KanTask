@@ -12,17 +12,15 @@ import br.edu.unidavi.kantask.fragment.DoneFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private KanTaskApplication application;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         TabsAdapter adapter = new TabsAdapter(getSupportFragmentManager());
-        adapter.addTab( new DoFragment() , "A Fazer");
-        adapter.addTab( new DoingFragment(), "Fazendo");
-        adapter.addTab( new DoneFragment(), "Feito");
+        adapter.addTab(new DoFragment() , "A Fazer");
+        adapter.addTab(new DoingFragment(), "Fazendo");
+        adapter.addTab(new DoneFragment(), "Feito");
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.tabs_view_pager);
         viewPager.setAdapter(adapter);

@@ -8,9 +8,9 @@ public class Tarefa implements Comparable<Tarefa> {
 
     private Integer id;
     private String descricao;
-    private Date prazo;
-    private Date dataInicio;
-    private Date dataConlusao;
+    private String prazo;
+    private String dataInicio;
+    private String dataConlusao;
     private Integer prioridade;
     private Integer status;
 
@@ -30,27 +30,27 @@ public class Tarefa implements Comparable<Tarefa> {
         this.descricao = descricao;
     }
 
-    public Date getPrazo() {
+    public String getPrazo() {
         return prazo;
     }
 
-    public void setPrazo(Date prazo) {
+    public void setPrazo(String prazo) {
         this.prazo = prazo;
     }
 
-    public Date getDataInicio() {
+    public String getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(Date dataInicio) {
+    public void setDataInicio(String dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public Date getDataConlusao() {
+    public String getDataConlusao() {
         return dataConlusao;
     }
 
-    public void setDataConlusao(Date dataConlusao) {
+    public void setDataConlusao(String dataConlusao) {
         this.dataConlusao = dataConlusao;
     }
 
