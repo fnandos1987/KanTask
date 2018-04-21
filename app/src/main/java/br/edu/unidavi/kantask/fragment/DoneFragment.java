@@ -15,7 +15,6 @@ import br.edu.unidavi.kantask.R;
 import br.edu.unidavi.kantask.adapter.TaskAdapter;
 import br.edu.unidavi.kantask.model.Prioridade;
 import br.edu.unidavi.kantask.model.Tarefa;
-import br.edu.unidavi.kantask.utils.DividerItemDecoration;
 
 public class DoneFragment extends Fragment {
 
@@ -27,8 +26,6 @@ public class DoneFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
         setupRecyclerView(recyclerView);
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
-                DividerItemDecoration.VERTICAL_LIST));
         return recyclerView;
     }
 
