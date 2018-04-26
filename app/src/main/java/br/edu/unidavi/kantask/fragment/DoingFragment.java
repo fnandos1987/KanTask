@@ -10,19 +10,25 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
+import br.edu.unidavi.kantask.KanTask;
 import br.edu.unidavi.kantask.R;
 import br.edu.unidavi.kantask.adapter.TaskAdapter;
 import br.edu.unidavi.kantask.model.Prioridade;
+import br.edu.unidavi.kantask.model.Status;
 import br.edu.unidavi.kantask.model.Tarefa;
 
 public class DoingFragment extends Fragment {
 
+    TaskAdapter taskAdapter;
+    RecyclerView recyclerView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        RecyclerView recyclerView = (RecyclerView) inflater.inflate(
-                R.layout.fragment_doing, container, false);
+        recyclerView = (RecyclerView) inflater.inflate(
+                R.layout.fragment_list, container, false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
         setupRecyclerView(recyclerView);
@@ -30,17 +36,16 @@ public class DoingFragment extends Fragment {
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {
-        Tarefa tarefa = new Tarefa();
-        tarefa.setDescricao("doing");
-        tarefa.setPrazo("13/09/2018");
-        tarefa.setDataInicio("12/09/2018");
-        tarefa.setPrioridade(Prioridade.ALTA.getId());
-        tarefa.setStatus(Integer.parseInt("2"));
-
         ArrayList<Tarefa> arrayList = new ArrayList<>();
-        arrayList.add(tarefa);
+        for(Tarefa task: KanTask.getInstance().getTarefas()){
+            if(task.getStatus() == Status.FAZENDO.getId()){
+                arrayList.add(task);
+            }
+        }
 
-        TaskAdapter taskAdapter = new TaskAdapter(arrayList, getActivity());
+        Collections.sort(arrayList);
+
+        taskAdapter = new TaskAdapter(arrayList, getActivity());
         recyclerView.setAdapter(taskAdapter);
     }
 }

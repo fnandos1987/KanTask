@@ -34,13 +34,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
         );
-
-        Session session = new Session(this);
-        EditText editTextEmail = findViewById(R.id.input_email);
-        editTextEmail.setText(session.getUserNameInSession());
-
-        EditText editTextPassword = findViewById(R.id.input_password);
-        editTextPassword.requestFocus();
     }
 
     @Override

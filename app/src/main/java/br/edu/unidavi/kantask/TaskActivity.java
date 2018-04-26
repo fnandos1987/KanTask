@@ -1,61 +1,62 @@
 package br.edu.unidavi.kantask;
 
 import android.content.Intent;
-import android.os.Trace;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
+import br.edu.unidavi.kantask.model.Prioridade;
+import br.edu.unidavi.kantask.model.Status;
 import br.edu.unidavi.kantask.model.Tarefa;
+import br.edu.unidavi.kantask.utils.DateInputMask;
 
 public class TaskActivity extends AppCompatActivity {
 
     EditText descricao, prazo;
     Button salvar;
+    RadioGroup radioPrioridade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
 
-        descricao = (EditText) findViewById(R.id.input_descricao);
-        prazo = (EditText) findViewById(R.id.input_prazo);
+        descricao = findViewById(R.id.input_descricao);
+        prazo = findViewById(R.id.input_prazo);
+        radioPrioridade = findViewById(R.id.radioGroup);
 
-        salvar = (Button) findViewById(R.id.button_save);
+        new DateInputMask(prazo);
+
+        salvar = findViewById(R.id.button_save);
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(new Tarefa());
+                Tarefa tarefa = new Tarefa();
+                tarefa.setDescricao(descricao.getText().toString());
+                tarefa.setPrazo(prazo.getText().toString());
+                tarefa.setStatus(Status.FAZER.getId());
+
+                int selectedId = radioPrioridade.getCheckedRadioButtonId();
+                RadioButton radioPrioridade = findViewById(selectedId);
+
+                if(radioPrioridade.getText().toString() == v.getResources().getString(R.string.text_normal)){
+                    tarefa.setPrioridade(Prioridade.NORMAL.getId());
+                } else if (radioPrioridade.getText().toString() == v.getResources().getString(R.string.text_media)){
+                    tarefa.setPrioridade(Prioridade.MEDIA.getId());
+                } else if (radioPrioridade.getText().toString() == v.getResources().getString(R.string.text_alta)){
+                    tarefa.setPrioridade(Prioridade.ALTA.getId());
+                }
+
+                KanTask.getInstance().addTarefa(tarefa);
+                goHome();
             }
         });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
-    }
-
-    @Subscribe
-    public void onEvent(Tarefa task){
-//        hideDialog();
-//
-//        Session session = new Session(this);
-//        session.setUserNameInSession(user.getName());
-//        session.setTokenInSession(user.getToken());
-
-        goHome();
     }
 
     private void goHome(){

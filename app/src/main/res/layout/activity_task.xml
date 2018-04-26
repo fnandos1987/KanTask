@@ -48,7 +48,7 @@
         android:textSize="16sp"
         android:layout_margin="8dp"
         android:textStyle="bold"
-        android:text="Prioridade"
+        android:text="@string/label_prioridade"
         android:labelFor="@id/radioGroup"
         />
 
@@ -63,7 +63,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Normal"
+            android:text="@string/text_normal"
             android:id="@+id/radioButton"
             android:layout_gravity="center_horizontal"
             android:checked="true"
@@ -73,7 +73,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Média"
+            android:text="@string/text_media"
             android:id="@+id/radioButton2"
             android:layout_gravity="center_horizontal"
             android:checked="false"
@@ -83,7 +83,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Alta"
+            android:text="@string/text_alta"
             android:id="@+id/radioButton3"
             android:layout_gravity="center_horizontal"
             android:checked="false"
