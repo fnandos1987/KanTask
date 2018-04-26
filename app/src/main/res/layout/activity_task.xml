@@ -99,4 +99,12 @@
         android:layout_below="@id/radioGroup"
         android:padding="8dp" />
 
+    <Button
+        android:id="@+id/button_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="@string/button_cancel"
+        android:layout_below="@id/button_save"
+        android:padding="8dp" />
+
 </RelativeLayout>

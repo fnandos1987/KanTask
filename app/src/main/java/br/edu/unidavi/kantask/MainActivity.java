@@ -103,6 +103,16 @@ public class MainActivity extends AppCompatActivity {
         TextView prazo = dialogMoveBoardView.findViewById(R.id.label_prazo);
         prazo.setText(newTask.getPrazo());
 
+        TextView prioridade = dialogMoveBoardView.findViewById(R.id.label_prioridade);
+        prioridade.setText(newTask.getDescricaoPrioridade());
+
+        TextView status = dialogMoveBoardView.findViewById(R.id.label_status);
+        if(tarefa.getStatus() == Status.FAZER.getId()){
+            status.setText("Para: " + Status.FAZENDO.getDescricao());
+        } else if(tarefa.getStatus() == Status.FAZENDO.getId()) {
+            status.setText("Para: " + Status.FEITO.getDescricao());
+        }
+
         builder.setTitle(getResources().getString(R.string.choose_category_dialog))
                 .setView(dialogMoveBoardView)
                 .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
@@ -115,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
                 .setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //Cancel dialog
                         dialog.dismiss();
                     }
                 })
@@ -124,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void moveCardToBoard(Tarefa tarefa){
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/YYYY");
-
         if(tarefa.getStatus() == Status.FAZER.getId()){
             tarefa.setStatus(Status.FAZENDO.getId());
             tarefa.setDataInicio(format.format(new Date()));

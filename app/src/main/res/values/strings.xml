@@ -22,12 +22,15 @@
     <string name="text_media">Média</string>
     <string name="text_alta">Alta</string>
     <string name="label_prioridade">Prioridade</string>
-    <string name="choose_category_dialog">Mover Tarefa</string>
+    <string name="choose_category_dialog">Mover</string>
     <string name="fazer">A Fazer</string>
     <string name="fazendo">Fazendo</string>
     <string name="feito">Feito</string>
     <string name="cancel">Cancelar</string>
-    <string name="ok">Salvar</string>
+    <string name="ok">Ok</string>
     <string name="hint_card">Tarefa</string>
+    <string name="descricao_error">Informe a descrição</string>
+    <string name="data_error">Informe o Prazo de Conclusão</string>
+    <string name="button_cancel">Cancelar</string>
 
 </resources>

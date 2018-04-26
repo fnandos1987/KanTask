@@ -14,6 +14,15 @@ public enum Status {
         this.descricao = descricao;
     }
 
+    public static Status getById(Integer id) {
+        for (Status s : values()) {
+            if (s.id.equals(id)) {
+                return s;
+            }
+        }
+        return FAZER;
+    }
+
     public Integer getId() {
         return id;
     }

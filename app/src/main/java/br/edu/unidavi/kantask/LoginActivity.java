@@ -49,15 +49,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void tryLogin(){
-        EditText inputEmail = findViewById(R.id.input_email);
-        String emailValue = inputEmail.getText().toString();
+        EditText inputUser = findViewById(R.id.input_email);
+        String userValue = inputUser.getText().toString();
 
         EditText inputPassword = findViewById(R.id.input_password);
         String passwordValue = inputPassword.getText().toString();
 
         showDialog();
 
-        WebTaskLogin task = new WebTaskLogin(this,emailValue,passwordValue);
+        WebTaskLogin task = new WebTaskLogin(this,userValue,passwordValue);
         task.execute();
 
     }

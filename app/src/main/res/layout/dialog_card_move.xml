@@ -3,14 +3,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin">
 
     <TextView
         android:id="@+id/label_descricao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:layout_margin="8dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="8sp"
         android:textStyle="bold"
         />
 
@@ -20,7 +22,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:layout_margin="8dp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/label_prioridade"
+        android:layout_below="@id/label_prazo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/label_status"
+        android:layout_below="@id/label_prioridade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginBottom="5dp"
         android:textStyle="bold"
         />
 

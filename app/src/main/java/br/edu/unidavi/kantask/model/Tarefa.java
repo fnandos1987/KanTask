@@ -23,7 +23,7 @@ public class Tarefa implements Comparable<Tarefa> {
     }
 
     public String getDescricao() {
-        return descricao;
+        return "Tarefa: " + descricao;
     }
 
     public void setDescricao(String descricao) {
@@ -31,7 +31,7 @@ public class Tarefa implements Comparable<Tarefa> {
     }
 
     public String getPrazo() {
-        return prazo;
+        return "Prazo Conclusão: " + prazo;
     }
 
     public void setPrazo(String prazo) {
@@ -39,7 +39,7 @@ public class Tarefa implements Comparable<Tarefa> {
     }
 
     public String getDataInicio() {
-        return dataInicio;
+        return "Data Início: " + dataInicio;
     }
 
     public void setDataInicio(String dataInicio) {
@@ -47,7 +47,7 @@ public class Tarefa implements Comparable<Tarefa> {
     }
 
     public String getDataConlusao() {
-        return dataConlusao;
+        return "Data Conclusão: " + dataConlusao;
     }
 
     public void setDataConlusao(String dataConlusao) {
@@ -71,7 +71,11 @@ public class Tarefa implements Comparable<Tarefa> {
     }
 
     public String getDescricaoPrioridade(){
-        return Prioridade.getById(this.prioridade).getDescricao();
+        return "Prioridade: " + Prioridade.getById(this.prioridade).getDescricao();
+    }
+
+    public String getDescricaoStatus(){
+        return Status.getById(this.status).getDescricao();
     }
 
     @Override

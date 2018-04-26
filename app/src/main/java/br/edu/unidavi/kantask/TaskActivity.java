@@ -1,6 +1,7 @@
 package br.edu.unidavi.kantask;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,9 +19,10 @@ import br.edu.unidavi.kantask.utils.DateInputMask;
 
 public class TaskActivity extends AppCompatActivity {
 
-    EditText descricao, prazo;
-    Button salvar;
-    RadioGroup radioPrioridade;
+    private EditText descricao, prazo;
+    private TextInputLayout descInputLayout, prazoInputLayout;
+    private Button salvar, cancelar;
+    private RadioGroup radioPrioridade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,26 +39,40 @@ public class TaskActivity extends AppCompatActivity {
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Tarefa tarefa = new Tarefa();
-                tarefa.setDescricao(descricao.getText().toString());
-                tarefa.setPrazo(prazo.getText().toString());
-                tarefa.setStatus(Status.FAZER.getId());
+                boolean validateDesc = validateDescricao();
+                boolean validatePrazo = validateData();
+                if(validateDesc && validatePrazo) {
+                    Tarefa tarefa = new Tarefa();
+                    tarefa.setDescricao(descricao.getText().toString());
+                    tarefa.setPrazo(prazo.getText().toString());
+                    tarefa.setStatus(Status.FAZER.getId());
 
-                int selectedId = radioPrioridade.getCheckedRadioButtonId();
-                RadioButton radioPrioridade = findViewById(selectedId);
+                    int selectedId = radioPrioridade.getCheckedRadioButtonId();
+                    RadioButton radioPrioridade = findViewById(selectedId);
 
-                if(radioPrioridade.getText().toString() == v.getResources().getString(R.string.text_normal)){
-                    tarefa.setPrioridade(Prioridade.NORMAL.getId());
-                } else if (radioPrioridade.getText().toString() == v.getResources().getString(R.string.text_media)){
-                    tarefa.setPrioridade(Prioridade.MEDIA.getId());
-                } else if (radioPrioridade.getText().toString() == v.getResources().getString(R.string.text_alta)){
-                    tarefa.setPrioridade(Prioridade.ALTA.getId());
+                    if (radioPrioridade.getText().toString() == v.getResources().getString(R.string.text_normal)) {
+                        tarefa.setPrioridade(Prioridade.NORMAL.getId());
+                    } else if (radioPrioridade.getText().toString() == v.getResources().getString(R.string.text_media)) {
+                        tarefa.setPrioridade(Prioridade.MEDIA.getId());
+                    } else if (radioPrioridade.getText().toString() == v.getResources().getString(R.string.text_alta)) {
+                        tarefa.setPrioridade(Prioridade.ALTA.getId());
+                    }
+
+                    KanTask.getInstance().addTarefa(tarefa);
+                    goHome();
                 }
+            }
+        });
 
-                KanTask.getInstance().addTarefa(tarefa);
+        cancelar = findViewById(R.id.button_cancel);
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 goHome();
             }
         });
+
+
     }
 
     private void goHome(){
@@ -64,5 +80,28 @@ public class TaskActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         finish();
+    }
+
+    private boolean validateDescricao() {
+        if(descricao.getText().toString().trim().isEmpty()) {
+            descricao.setError(getResources().getString(R.string.descricao_error));
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateData() {
+        if(prazo.getText().toString().trim().isEmpty()) {
+            prazo.setError(getResources().getString(R.string.data_error));
+            return false;
+        } else {
+            String s = prazo.getText().toString().replaceAll("[^\\d.]|\\.", "");
+            if(s.length() < 8){
+                prazo.setError(getResources().getString(R.string.data_error));
+                return false;
+            }
+            return true;
+        }
     }
 }

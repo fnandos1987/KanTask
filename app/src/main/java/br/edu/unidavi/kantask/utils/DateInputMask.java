@@ -9,7 +9,6 @@ import java.util.Calendar;
 public class DateInputMask implements TextWatcher {
 
     private String current = "";
-    private String ddmmyyyy = "DDMMAAAA";
     private Calendar cal = Calendar.getInstance();
     private EditText input;
 
@@ -41,7 +40,7 @@ public class DateInputMask implements TextWatcher {
         if (clean.equals(cleanC)) sel--;
 
         if (clean.length() < 8){
-            clean = clean + ddmmyyyy.substring(clean.length());
+            clean = clean + "        ".substring(clean.length());
         }else{
             int day  = Integer.parseInt(clean.substring(0,2));
             int mon  = Integer.parseInt(clean.substring(2,4));
