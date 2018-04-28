@@ -16,6 +16,7 @@ import br.edu.unidavi.kantask.model.Prioridade;
 import br.edu.unidavi.kantask.model.Status;
 import br.edu.unidavi.kantask.model.Tarefa;
 import br.edu.unidavi.kantask.utils.DateInputMask;
+import br.edu.unidavi.kantask.utils.WaitDialog;
 
 public class TaskActivity extends AppCompatActivity {
 
@@ -39,6 +40,8 @@ public class TaskActivity extends AppCompatActivity {
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                WaitDialog.showDialog(v.getContext());
+
                 boolean validateDesc = validateDescricao();
                 boolean validatePrazo = validateData();
                 if(validateDesc && validatePrazo) {
@@ -60,6 +63,8 @@ public class TaskActivity extends AppCompatActivity {
 
                     KanTask.getInstance().addTarefa(tarefa);
                     goHome();
+                } else {
+                    WaitDialog.hideDialog();
                 }
             }
         });
